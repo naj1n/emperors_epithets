@@ -616,7 +616,7 @@ export const questionBank: Omit<Question, "id">[] = [
     options: ["代", "英", "景", "宪"],
     hint: "北京保卫战的幕后功臣，却在夺门之变后被废。",
     description: "朱祁镇之弟，于谦辅佐守住北京，庙号被废又恢复。",
-    image: "zhuqiyu.webp",
+    image: "zhuqiyu.jpg",
     dramaImage: "朱祁钰.webp",
   },
   {
