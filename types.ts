@@ -1,11 +1,19 @@
+export type QuestionType = "庙号" | "谥号";
+
 export interface Question {
   id: string;
   emperorName: string;
   dynasty: string;
-  correctTitle: string;
-  options: string[];
+  questionType: QuestionType;  // Whether this question asks for 庙号 or 谥号
+  correctTitle: string;        // Full title for results display, e.g., "太宗"
+  correctAnswer: string;       // The fill-in answer, e.g., "太"
+  options: string[];           // Fill-in options
+  templatePrefix: string;      // Display prefix, e.g., "唐"
+  templateSuffix: string;      // Display suffix, e.g., "宗"
   hint: string;
-  description: string; // A short description for context
+  description: string;
+  image: string;               // Textbook image in /images/emperors/
+  dramaImage: string;          // Drama image in /images/now/
 }
 
 export enum GameState {
@@ -17,9 +25,9 @@ export enum GameState {
 }
 
 export enum Rank {
+  GANG = '夯',
   TOP_TIER = '顶级',
   SUPERIOR = '人上人',
-  SOLID = '夯',
   NPC = 'NPC',
   TRASH = '拉完了'
 }

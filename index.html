@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>帝王谥号猜猜乐</title>
+    <title>帝号猜猜乐</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap');
@@ -25,20 +25,71 @@
       .animate-float {
         animation: float 6s ease-in-out infinite;
       }
+
+      /* Glowing blank for fill-in-the-blank template */
+      @keyframes seal-glow {
+        0%, 100% {
+          box-shadow: 0 0 8px rgba(234, 179, 8, 0.2),
+                      0 0 20px rgba(234, 179, 8, 0.05),
+                      inset 0 0 6px rgba(234, 179, 8, 0.08);
+          border-color: rgba(217, 159, 10, 0.5);
+        }
+        50% {
+          box-shadow: 0 0 16px rgba(234, 179, 8, 0.45),
+                      0 0 40px rgba(234, 179, 8, 0.12),
+                      inset 0 0 12px rgba(234, 179, 8, 0.15);
+          border-color: rgba(234, 179, 8, 1);
+        }
+      }
+      .animate-seal-glow {
+        animation: seal-glow 2.5s ease-in-out infinite;
+      }
+
+      /* ---- Fire-from-center transition ---- */
+      /* Animate a custom property so radial-gradient interpolates smoothly */
+      @property --burn-size {
+        syntax: '<length-percentage>';
+        initial-value: 0%;
+        inherits: false;
+      }
+      @keyframes burn-expand {
+        from { --burn-size: 0%; }
+        to   { --burn-size: 85%; }
+      }
+
+      /* Textbook image: a transparent hole grows from center, eating it away */
+      .animate-burn-from-center {
+        animation: burn-expand 1.4s ease-out forwards;
+        -webkit-mask-image: radial-gradient(
+          circle at 50% 50%,
+          transparent var(--burn-size),
+          black calc(var(--burn-size) + 5%)
+        );
+        mask-image: radial-gradient(
+          circle at 50% 50%,
+          transparent var(--burn-size),
+          black calc(var(--burn-size) + 5%)
+        );
+        filter: brightness(1.3) sepia(0.2) saturate(1.4);
+      }
+
+      /* Fire ring: glowing orange edge that follows the expanding burn */
+      .animate-fire-edge {
+        animation: burn-expand 1.4s ease-out forwards;
+        background: radial-gradient(
+          circle at 50% 50%,
+          transparent calc(var(--burn-size) - 3%),
+          rgba(255,200,50,0.6) calc(var(--burn-size) - 1%),
+          rgba(255,120,0,0.9) calc(var(--burn-size) + 1%),
+          rgba(255,60,0,0.7)  calc(var(--burn-size) + 4%),
+          rgba(180,30,0,0.3)  calc(var(--burn-size) + 8%),
+          transparent          calc(var(--burn-size) + 13%)
+        );
+      }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4",
-    "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
-  }
-}
-</script>
 </head>
   <body class="bg-stone-100 text-stone-900 overflow-x-hidden antialiased selection:bg-red-200 selection:text-red-900">
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
