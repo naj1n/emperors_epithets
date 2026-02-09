@@ -1,0 +1,5 @@
+{
+  "name": "帝王谥号猜猜乐",
+  "description": "一款基于 Google Gemini 的中国皇帝谥号竞猜游戏，测试你的历史知识储备。",
+  "requestFramePermissions": []
+}
