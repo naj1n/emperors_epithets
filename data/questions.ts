@@ -23,7 +23,7 @@ export const questionBank: Omit<Question, "id">[] = [
     correctAnswer: "高",
     options: ["高", "文", "武", "太"],
     hint: "斩白蛇起义，击败项羽建立大汉王朝。",
-    description: "汉朝开国皇帝，注意：大家常说的「汉高祖「其实是庙号和谥号的混称。",
+    description: "汉朝开国皇帝，注意：大家常说的「汉高祖」其实是庙号和谥号的混称。",
     image: "liubang.jpg",
     dramaImage: "刘邦.png",
   },
